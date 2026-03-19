@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FastCorpFiling – Business Formation Services in All 50 States</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --gold: #c9a84c;
+    --gold-light: #e8c76a;
+    --cream: #faf8f3;
+    --white: #ffffff;
+    --slate: #8892a4;
+    --text: #1e2d45;
+    --border: #e0ddd5;
+    --success: #27ae60;
+    --radius: 8px;
+    --shadow: 0 4px 24px rgba(10,22,40,0.10);
+    --shadow-lg: 0 16px 48px rgba(10,22,40,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* ─── TOPBAR ─── */
+  .topbar {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    text-align: center;
+    padding: 8px 20px;
+    letter-spacing: 0.3px;
+  }
+  .topbar span { color: var(--gold); font-weight: 600; }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    box-shadow: 0 2px 12px rgba(10,22,40,0.07);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 9px 22px;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3a5c 100%);
+    color: var(--white);
+    padding: 90px 40px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 1;
+  }
+  .hero-content { position: relative; max-width: 780px; margin: 0 auto; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 2px;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.72);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.07); }
+  .hero-trust {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+  }
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .trust-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .trust-label { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  /* ─── SECTION HELPERS ─── */
+  section { padding: 80px 40px; }
+  .section-inner { max-width: 1120px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 560px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .section-header { margin-bottom: 52px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-sub { margin: 0 auto; }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--gold); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    font-size: 24px;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .service-card p { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 20px; }
+  .service-features { list-style: none; }
+  .service-features li {
+    font-size: 13px;
+    color: var(--text);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .service-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+  .service-price {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--slate);
+  }
+  .service-price strong { font-size: 22px; color: var(--navy); font-weight: 700; }
+
+  /* ─── HOW IT WORKS ─── */
+  #how { background: var(--cream); }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    position: relative;
+  }
+  .step {
+    text-align: center;
+    padding: 32px 24px;
+  }
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 50%;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .step h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+  .step p { font-size: 14px; color: var(--slate); line-height: 1.7; }
+
+  /* ─── STATES ─── */
+  #states { background: var(--navy); color: var(--white); }
+  #states .section-title { color: var(--white); }
+  #states .section-sub { color: rgba(255,255,255,0.6); }
+  .states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .state-chip {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .state-chip:hover, .state-chip.selected {
+    background: rgba(201,168,76,0.18);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* ─── ORDER FORM ─── */
+  #order { background: var(--white); }
+  .order-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: start;
+  }
+  .order-form-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 44px 40px;
+    box-shadow: var(--shadow);
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .form-sub { font-size: 14px; color: var(--slate); margin-bottom: 32px; }
+  .form-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 28px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 7px;
+  }
+  .form-group label span { color: #e74c3c; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 11px 15px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    transition: border 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .service-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .service-option {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .service-option input[type="checkbox"] { display: none; }
+  .service-option.checked {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.07);
+  }
+  .service-option-icon { font-size: 18px; flex-shrink: 0; }
+  .service-option-info { flex: 1; }
+  .service-option-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .service-option-price { font-size: 12px; color: var(--gold); font-weight: 700; }
+  .service-option-desc { font-size: 11px; color: var(--slate); margin-top: 2px; }
+
+  .payment-icons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .payment-icon {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--slate);
+  }
+  .card-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; }
+
+  .order-summary {
+    position: sticky;
+    top: 88px;
+  }
+  .summary-card {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 36px 32px;
+    color: var(--white);
+  }
+  .summary-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px 0;
+    color: rgba(255,255,255,0.75);
+  }
+  .summary-line.total {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-top: 8px;
+    padding-top: 16px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .summary-line .price { color: var(--gold-light); font-weight: 600; }
+  .summary-line.total .price { color: var(--gold); font-size: 22px; }
+  .summary-line.hidden { display: none; }
+  .summary-note {
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+  .summary-note strong { color: var(--gold-light); }
+  .trust-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  .badge-icon { font-size: 16px; }
+
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(201,168,76,0.4); }
+  .submit-btn:active { transform: translateY(0); }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--cream); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--gold);
+    opacity: 0.2;
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    line-height: 1;
+  }
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; }
+  .testimonial-text { font-size: 15px; color: var(--text); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-weight: 700; font-size: 16px;
+  }
+  .author-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .author-co { font-size: 12px; color: var(--slate); }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--white); }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 18px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--cream);
+    user-select: none;
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-chevron { font-size: 12px; transition: transform 0.25s; }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-a {
+    display: none;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    background: var(--white);
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    padding: 60px 40px 32px;
+  }
+  .footer-inner { max-width: 1120px; margin: 0 auto; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: block;
+    text-decoration: none;
+  }
+  .footer-desc { font-size: 14px; line-height: 1.7; max-width: 260px; }
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  /* ─── SUCCESS MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 48px 40px;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-icon { font-size: 60px; margin-bottom: 20px; }
+  .modal h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 28px; margin-bottom: 12px; }
+  .modal p { color: var(--slate); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  .modal-close {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 12px 32px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 60px 20px 80px; }
+    .order-wrapper { grid-template-columns: 1fr; }
+    .order-summary { position: static; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .form-row, .card-row { grid-template-columns: 1fr; }
+    .service-selector { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-trust { gap: 20px; }
+    .states-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+  }
+
+  /* ─── UTILITY ─── */
+  .divider { height: 1px; background: var(--border); max-width: 1120px; margin: 0 auto; }
+  .text-gold { color: var(--gold); }
+  .mt-8 { margin-top: 8px; }
+  .alert-error {
+    background: #fdf2f2;
+    border: 1px solid #fbbebe;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #c0392b;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .required-note { font-size: 12px; color: var(--slate); margin-bottom: 20px; }
+  .required-note span { color: #e74c3c; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  🇺🇸 Serving all 50 states &nbsp;|&nbsp; <span>Same-day filing available</span> &nbsp;|&nbsp; Questions? Call us: <span>(800) 555-0190</span>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">
+    FastCorpFiling
+    <span class="logo-badge">Official</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#states">All 50 States</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#order" class="nav-cta">Start Filing →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">⚡ Fast &amp; Reliable Business Formation</div>
+    <h1>Launch Your Business <br>in <em>All 50 States</em></h1>
+    <p class="hero-sub">Professional LLC &amp; Corporation formation, registered agent service, and EIN filing — handled fast, handled right.</p>
+    <div class="hero-ctas">
+      <a href="#order" class="btn-primary">Get Started Today →</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">50,000+</span>
+        <span class="trust-label">Businesses Formed</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">50</span>
+        <span class="trust-label">States Covered</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">24hr</span>
+        <span class="trust-label">Processing Time</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">4.9★</span>
+        <span class="trust-label">Average Rating</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">Our Services</div>
+      <h2 class="section-title">Everything You Need to Start &amp; Stay Compliant</h2>
+      <p class="section-sub">From formation to federal tax ID — we handle the paperwork so you can focus on building your business.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>LLC Formation</h3>
+        <p>The most popular choice for small business owners. Enjoy liability protection with simplified tax treatment.</p>
+        <ul class="service-features">
+          <li>Articles of Organization prepared &amp; filed</li>
+          <li>Registered agent (1st year included)</li>
+          <li>Operating agreement template</li>
+          <li>State filing confirmation</li>
+          <li>Digital document delivery</li>
+        </ul>
+        <div class="service-price">Starting at <strong>$49</strong> + state fees</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Corporation (Inc.)</h3>
+        <p>Ideal for businesses seeking investors or planning to go public. Choose from C-Corp or S-Corp designation.</p>
+        <ul class="service-features">
+          <li>Articles of Incorporation filed</li>
+          <li>Corporate bylaws template</li>
+          <li>Initial minutes &amp; resolutions</li>
+          <li>Stock certificates template</li>
+          <li>S-Corp election (optional add-on)</li>
+        </ul>
+        <div class="service-price">Starting at <strong>$79</strong> + state fees</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📍</div>
+        <h3>Registered Agent</h3>
+        <p>Every business entity requires a registered agent. We receive official mail and legal notices on your behalf.</p>
+        <ul class="service-features">
+          <li>Physical address in your state</li>
+          <li>Immediate document scanning</li>
+          <li>Compliance calendar reminders</li>
+          <li>Online document portal access</li>
+          <li>Privacy &amp; protection</li>
+        </ul>
+        <div class="service-price"><strong>$99</strong> / year per state</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔢</div>
+        <h3>EIN / Tax ID Filing</h3>
+        <p>Your Federal Employer Identification Number is required to open a bank account, hire employees, and pay taxes.</p>
+        <ul class="service-features">
+          <li>EIN application prepared &amp; submitted</li>
+          <li>IRS confirmation letter included</li>
+          <li>Same-day processing available</li>
+          <li>Foreign nationals welcome</li>
+          <li>No SSN required (in most cases)</li>
+        </ul>
+        <div class="service-price"><strong>$49</strong> flat fee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">Process</div>
+      <h2 class="section-title">Forming Your Business Takes <br>Just 4 Simple Steps</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Choose Your Entity</h3>
+        <p>Select LLC, Corporation, or both. Pick the state(s) where you'll operate and the services you need.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Complete the Order Form</h3>
+        <p>Provide your business name, owner information, and any special instructions. Takes under 5 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>We File With the State</h3>
+        <p>Our team prepares and submits all required documents to the Secretary of State on your behalf.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Receive Your Documents</h3>
+        <p>Get your stamped formation documents, operating agreement, and EIN delivered digitally to your inbox.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL 50 STATES -->
+<section id="states">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Coverage</div>
+      <h2 class="section-title">We File in All 50 States</h2>
+      <p class="section-sub">Click your state below to see state-specific filing fees and turnaround times.</p>
+    </div>
+    <div class="states-grid" id="statesGrid"></div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section id="order">
+  <div class="section-inner">
+    <div class="order-wrapper">
+      <div>
+        <div class="section-header">
+          <div class="section-tag">Order Now</div>
+          <h2 class="section-title">Start Your Business Formation</h2>
+          <p class="section-sub">Secure checkout. Your information is encrypted and never shared.</p>
+        </div>
+        <div class="order-form-card">
+          <div class="form-title">Order Form</div>
+          <div class="form-sub">Fill out the form below to begin. Fields marked <span style="color:#e74c3c">*</span> are required.</div>
+
+          <div id="formError" class="alert-error">Please fill in all required fields before submitting.</div>
+
+          <form id="orderForm" novalidate>
+
+            <!-- SERVICE SELECTION -->
+            <div class="form-section-label">1. Select Services</div>
+            <div class="service-selector" id="serviceSelector">
+              <label class="service-option" data-price="49" data-id="llc">
+                <input type="checkbox" name="service" value="llc">
+                <span class="service-option-icon">🏢</span>
+                <div class="service-option-info">
+                  <div class="service-option-name">LLC Formation</div>
+                  <div class="service-option-price">$49 + state fees</div>
+                  <div class="service-option-desc">Articles of Org + Registered Agent</div>
+                </div>
+              </label>
+              <label class="service-option" data-price="79" data-id="corp">
+                <input type="checkbox" name="service" value="corp">
+                <span class="service-option-icon">📋</span>
+                <div class="service-option-info">
+                  <div class="service-option-name">Corporation (Inc.)</div>
+                  <div class="service-option-price">$79 + state fees</div>
+                  <div class="service-option-desc">Articles of Inc + Bylaws</div>
+                </div>
+              </label>
+              <label class="service-option" data-price="99" data-id="agent">
+                <input type="checkbox" name="service" value="agent">
+                <span class="service-option-icon">📍</span>
+                <div class="service-option-info">
+                  <div class="service-option-name">Registered Agent</div>
+                  <div class="service-option-price">$99 / year</div>
+                  <div class="service-option-desc">Official address + document handling</div>
+                </div>
+              </label>
+              <label class="service-option" data-price="49" data-id="ein">
+                <input type="checkbox" name="service" value="ein">
+                <span class="service-option-icon">🔢</span>
+                <div class="service-option-info">
+                  <div class="service-option-name">EIN / Tax ID</div>
+                  <div class="service-option-price">$49 flat</div>
+                  <div class="service-option-desc">Federal tax ID from the IRS</div>
+                </div>
+              </label>
+            </div>
+
+            <!-- BUSINESS INFORMATION -->
+            <div class="form-section-label">2. Business Information</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Desired Business Name <span>*</span></label>
+                <input type="text" name="bizName" placeholder="e.g. Acme Holdings LLC" required>
+              </div>
+              <div class="form-group">
+                <label>Entity Type <span>*</span></label>
+                <select name="entityType" required>
+                  <option value="">Select type</option>
+                  <option>Limited Liability Company (LLC)</option>
+                  <option>C-Corporation</option>
+                  <option>S-Corporation</option>
+                  <option>Nonprofit Corporation</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>State of Formation <span>*</span></label>
+                <select name="state" required id="stateSelect">
+                  <option value="">Select state</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Business Purpose</label>
+                <input type="text" name="purpose" placeholder="e.g. General consulting services">
+              </div>
+            </div>
+
+            <!-- OWNER INFORMATION -->
+            <div class="form-section-label">3. Owner / Organizer Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name <span>*</span></label>
+                <input type="text" name="firstName" placeholder="John" required>
+              </div>
+              <div class="form-group">
+                <label>Last Name <span>*</span></label>
+                <input type="text" name="lastName" placeholder="Smith" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address <span>*</span></label>
+              <input type="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone Number <span>*</span></label>
+                <input type="tel" name="phone" placeholder="(555) 000-0000" required>
+              </div>
+              <div class="form-group">
+                <label>Processing Speed <span>*</span></label>
+                <select name="speed" required>
+                  <option value="">Select speed</option>
+                  <option value="standard">Standard (5–7 business days)</option>
+                  <option value="expedited">Expedited (+$50 · 2–3 business days)</option>
+                  <option value="same">Same Day (+$100 · order by 12pm ET)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Business Address (or Registered Agent will serve)</label>
+              <input type="text" name="address" placeholder="123 Main St, City, State, ZIP">
+            </div>
+            <div class="form-group">
+              <label>Additional Notes / Instructions</label>
+              <textarea name="notes" placeholder="Any specific instructions, alternate business names to check, etc."></textarea>
+            </div>
+
+            <!-- PAYMENT -->
+            <div class="form-section-label">4. Payment Information</div>
+            <div class="payment-icons">
+              <span class="payment-icon">VISA</span>
+              <span class="payment-icon">MC</span>
+              <span class="payment-icon">AMEX</span>
+              <span class="payment-icon">DISC</span>
+              <span class="payment-icon">🔒 SSL</span>
+            </div>
+            <div class="form-group">
+              <label>Cardholder Name <span>*</span></label>
+              <input type="text" name="cardName" placeholder="Name as it appears on card" required>
+            </div>
+            <div class="form-group">
+              <label>Card Number <span>*</span></label>
+              <input type="text" name="cardNumber" placeholder="•••• •••• •••• ••••" maxlength="19" id="cardNumber" required>
+            </div>
+            <div class="card-row">
+              <div class="form-group">
+                <label>Expiration Date <span>*</span></label>
+                <input type="text" name="expiry" placeholder="MM / YY" maxlength="7" id="expiry" required>
+              </div>
+              <div class="form-group">
+                <label>CVV <span>*</span></label>
+                <input type="text" name="cvv" placeholder="•••" maxlength="4" required>
+              </div>
+              <div class="form-group">
+                <label>Billing ZIP <span>*</span></label>
+                <input type="text" name="zip" placeholder="10001" maxlength="5" required>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              🔒 Complete Order &amp; Pay <span id="submitTotal"></span>
+            </button>
+
+            <p style="font-size:12px;color:var(--slate);text-align:center;margin-top:14px;line-height:1.6;">
+              By submitting you agree to our <a href="#" style="color:var(--gold)">Terms of Service</a> and <a href="#" style="color:var(--gold)">Privacy Policy</a>. State filing fees are collected separately.
+            </p>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="order-summary">
+        <div class="summary-card">
+          <div class="summary-title">📋 Order Summary</div>
+          <div id="summaryLines">
+            <div class="summary-line" style="color:rgba(255,255,255,0.4);font-style:italic;font-size:13px;">No services selected yet.</div>
+          </div>
+          <div class="summary-line total" id="summaryTotal" style="display:none">
+            <span>Total Due Today</span>
+            <span class="price" id="totalAmount">$0</span>
+          </div>
+          <div class="summary-note">
+            <strong>Note:</strong> State filing fees vary and are billed separately. You'll receive a breakdown before final processing.
+          </div>
+          <div class="trust-badges">
+            <div class="badge"><span class="badge-icon">🔒</span> 256-bit SSL encrypted checkout</div>
+            <div class="badge"><span class="badge-icon">📄</span> Documents delivered within 24 hrs</div>
+            <div class="badge"><span class="badge-icon">💬</span> Dedicated support team available</div>
+            <div class="badge"><span class="badge-icon">↩️</span> 100% money-back if rejected by state</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">Reviews</div>
+      <h2 class="section-title">Trusted by Thousands of Entrepreneurs</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">FastCorpFiling made setting up my LLC incredibly easy. I submitted my order on a Tuesday morning and had my documents by Wednesday afternoon. Exceptional service.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <div class="author-name">Marcus T.</div>
+            <div class="author-co">Founder, Tidewater Consulting LLC · Texas</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">I needed to form a Delaware C-Corp quickly for an investor meeting. FastCorpFiling's same-day service came through. My Articles of Incorporation arrived the same evening.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sarah K.</div>
+            <div class="author-co">CEO, StackLayer Inc. · Delaware</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Added registered agent service on top of my LLC filing and the whole process was seamless. The online portal makes it easy to track my compliance deadlines. Highly recommend.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Rafael M.</div>
+            <div class="author-co">Owner, Pacific Rim Imports LLC · California</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-grid" id="faqGrid">
+      <div class="faq-item">
+        <div class="faq-q">Which state should I form my LLC in? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">Most small business owners benefit from forming in the state where they actually do business. Delaware and Wyoming are popular for corporations and LLCs seeking flexibility and privacy. We can advise you during the ordering process.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does the filing process take? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">Standard processing is 5–7 business days. Expedited is 2–3 business days. Same-day service is available for orders placed before 12pm ET. Actual state processing time may vary.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is a registered agent and do I need one? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">A registered agent is required in every state where your business is formed or registered. They receive official mail and legal notices on your behalf. You can serve as your own, but using a professional service adds privacy and ensures you never miss important documents.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do state filing fees cost extra? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">Yes. State filing fees vary from around $50 to $500 depending on the state and entity type. Our service fee covers preparation, filing, and delivery. State fees are collected separately and we provide a full breakdown before processing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I form a business if I'm not a US citizen? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">Yes! Foreign nationals can form LLCs and corporations in the United States. You generally do not need a Social Security Number. We assist with EIN applications for non-residents as well.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between an LLC and a Corporation? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">LLCs offer flexible management and pass-through taxation, making them ideal for most small businesses. Corporations (C-Corp or S-Corp) are better suited for businesses seeking venture capital, issuing stock, or planning to go public. We can help you decide during the order process.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">FastCorpFiling</a>
+        <p class="footer-desc">Professional business formation services in all 50 states. Fast, reliable, and affordable.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#order">LLC Formation</a></li>
+          <li><a href="#order">Corporation Filing</a></li>
+          <li><a href="#order">Registered Agent</a></li>
+          <li><a href="#order">EIN / Tax ID</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FastCorpFiling.com · All rights reserved.</span>
+      <span>FastCorpFiling is a document preparation service and is not a law firm. We do not provide legal advice.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <h2>Order Received!</h2>
+    <p>Thank you! Your business formation order has been submitted. You'll receive a confirmation email shortly with your order details and next steps.</p>
+    <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('show')">Close</button>
+  </div>
+</div>
+
+<script>
+  // ── STATES DATA ──
+  const states = [
+    "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
+    "Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa",
+    "Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan",
+    "Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire",
+    "New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio",
+    "Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota",
+    "Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia",
+    "Wisconsin","Wyoming"
+  ];
+
+  // Populate states grid
+  const grid = document.getElementById('statesGrid');
+  const stateSelect = document.getElementById('stateSelect');
+  states.forEach(s => {
+    // Grid chips
+    const chip = document.createElement('div');
+    chip.className = 'state-chip';
+    chip.textContent = s;
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.state-chip').forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+      stateSelect.value = s;
+    });
+    grid.appendChild(chip);
+
+    // Select dropdown
+    const opt = document.createElement('option');
+    opt.value = s; opt.textContent = s;
+    stateSelect.appendChild(opt);
+  });
+
+  // ── SERVICE SELECTOR ──
+  const servicePrices = { llc: 49, corp: 79, agent: 99, ein: 49 };
+  const serviceLabels = { llc: 'LLC Formation', corp: 'Corporation (Inc.)', agent: 'Registered Agent', ein: 'EIN / Tax ID' };
+
+  function updateSummary() {
+    const selected = [];
+    document.querySelectorAll('.service-option').forEach(opt => {
+      if (opt.classList.contains('checked')) {
+        const id = opt.dataset.id;
+        selected.push({ id, label: serviceLabels[id], price: servicePrices[id] });
+      }
+    });
+
+    // Check speed add-on
+    const speed = document.querySelector('[name="speed"]').value;
+    let speedAdd = 0, speedLabel = '';
+    if (speed === 'expedited') { speedAdd = 50; speedLabel = 'Expedited Processing'; }
+    if (speed === 'same') { speedAdd = 100; speedLabel = 'Same-Day Processing'; }
+
+    const summaryDiv = document.getElementById('summaryLines');
+    const totalDiv = document.getElementById('summaryTotal');
+    const submitTotal = document.getElementById('submitTotal');
+
+    if (selected.length === 0 && !speedAdd) {
+      summaryDiv.innerHTML = '<div style="color:rgba(255,255,255,0.4);font-style:italic;font-size:13px;">No services selected yet.</div>';
+      totalDiv.style.display = 'none';
+      submitTotal.textContent = '';
+      return;
+    }
+
+    let total = 0;
+    let html = '';
+    selected.forEach(s => {
+      total += s.price;
+      html += `<div class="summary-line"><span>${s.label}</span><span class="price">$${s.price}</span></div>`;
+    });
+    if (speedAdd) {
+      total += speedAdd;
+      html += `<div class="summary-line"><span>${speedLabel}</span><span class="price">+$${speedAdd}</span></div>`;
+    }
+    summaryDiv.innerHTML = html;
+    totalDiv.style.display = 'flex';
+    document.getElementById('totalAmount').textContent = `$${total}`;
+    submitTotal.textContent = `— $${total}`;
+  }
+
+  document.querySelectorAll('.service-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      opt.classList.toggle('checked');
+      const cb = opt.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+      updateSummary();
+    });
+  });
+
+  document.querySelector('[name="speed"]').addEventListener('change', updateSummary);
+
+  // ── CARD NUMBER FORMATTING ──
+  document.getElementById('cardNumber').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g,'').substring(0,16);
+    e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+  });
+  document.getElementById('expiry').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g,'');
+    if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2,4);
+    e.target.value = v;
+  });
+
+  // ── FORM SUBMIT ──
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const required = this.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(f => {
+      if (!f.value.trim()) { f.style.borderColor = '#e74c3c'; valid = false; }
+      else f.style.borderColor = '';
+    });
+    if (!valid) {
+      document.getElementById('formError').style.display = 'block';
+      this.scrollIntoView({behavior:'smooth', block:'start'});
+      return;
+    }
+    document.getElementById('formError').style.display = 'none';
+    document.getElementById('successModal').classList.add('show');
+    this.reset();
+    document.querySelectorAll('.service-option').forEach(o => o.classList.remove('checked'));
+    updateSummary();
+  });
+
+  // ── FAQ ACCORDION ──
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .step, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
