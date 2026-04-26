@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -962,7 +961,7 @@
             <!-- SERVICE SELECTION -->
             <div class="form-section-label">1. Select Services</div>
             <div class="service-selector" id="serviceSelector">
-              <label class="service-option" data-price="49" data-id="llc">
+              <div class="service-option" data-price="49" data-id="llc">
                 <input type="checkbox" name="service" value="llc">
                 <span class="service-option-icon">🏢</span>
                 <div class="service-option-info">
@@ -970,8 +969,8 @@
                   <div class="service-option-price">$49 + state fees</div>
                   <div class="service-option-desc">Articles of Org + operating agreement</div>
                 </div>
-              </label>
-              <label class="service-option" data-price="79" data-id="corp">
+              </div>
+              <div class="service-option" data-price="79" data-id="corp">
                 <input type="checkbox" name="service" value="corp">
                 <span class="service-option-icon">📋</span>
                 <div class="service-option-info">
@@ -979,8 +978,8 @@
                   <div class="service-option-price">$79 + state fees</div>
                   <div class="service-option-desc">Articles of Inc + Bylaws</div>
                 </div>
-              </label>
-              <label class="service-option" data-price="49" data-id="ein">
+              </div>
+              <div class="service-option" data-price="49" data-id="ein">
                 <input type="checkbox" name="service" value="ein">
                 <span class="service-option-icon">🔢</span>
                 <div class="service-option-info">
@@ -988,8 +987,8 @@
                   <div class="service-option-price">$49 flat</div>
                   <div class="service-option-desc">Federal tax ID from the IRS</div>
                 </div>
-              </label>
-              <label class="service-option" data-price="99" data-id="annual">
+              </div>
+              <div class="service-option" data-price="99" data-id="annual">
                 <input type="checkbox" name="service" value="annual">
                 <span class="service-option-icon">📅</span>
                 <div class="service-option-info">
@@ -997,7 +996,7 @@
                   <div class="service-option-price">$99 + state fees</div>
                   <div class="service-option-desc">State annual/biennial filing</div>
                 </div>
-              </label>
+              </div>
             </div>
 
             <!-- BUSINESS INFORMATION -->
@@ -1325,9 +1324,9 @@
 
   document.querySelectorAll('.service-option').forEach(opt => {
     opt.addEventListener('click', () => {
-      opt.classList.toggle('checked');
       const cb = opt.querySelector('input[type="checkbox"]');
       cb.checked = !cb.checked;
+      opt.classList.toggle('checked', cb.checked);
       updateSummary();
     });
   });
