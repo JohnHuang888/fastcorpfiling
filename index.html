@@ -948,7 +948,7 @@
         <div class="section-header">
           <div class="section-tag">Order Now</div>
           <h2 class="section-title">Start Your Business Formation</h2>
-          <p class="section-sub">Tell us about your filing. We'll confirm state fees and send a secure payment link by email — your card is never entered on this site.</p>
+          <p class="section-sub">Tell us about your filing and pay your service fee immediately via secure Stripe checkout — your card is never entered on this site. State filing fees vary by state, so we'll confirm and bill that portion separately.</p>
         </div>
         <div class="order-form-card">
           <div class="form-title">Order Form</div>
@@ -1073,8 +1073,8 @@
             <!-- PAYMENT INFO BOX (replaces credit card fields) -->
             <div class="form-section-label">4. Payment</div>
             <div class="payment-info-box">
-              <div class="payment-info-box-title">🔒 Secure payment by email</div>
-              <p>After we receive your order, we'll review your filing details, confirm the exact state fees for your state and entity type, and email you a secure payment link powered by <strong>Stripe</strong>. Your card details are never entered on this website. Payment is only collected after we've confirmed everything with you.</p>
+              <div class="payment-info-box-title">🔒 Pay your service fee now, securely via Stripe</div>
+              <p>Clicking submit takes you straight to a secure <strong>Stripe</strong> checkout page to pay your service fee — your card details are never entered on this website. Your service fee total is shown below. State filing fees vary by state and entity type, so that portion is confirmed and billed separately after we review your order.</p>
             </div>
 
             <!-- Hidden fields for Formspree -->
@@ -1083,7 +1083,7 @@
             <input type="hidden" name="estimated_total" id="hiddenTotal" value="">
 
             <button type="submit" class="submit-btn" id="submitBtn">
-              Submit Order &amp; Get Payment Link <span id="submitTotal"></span>
+              Submit Order &amp; Pay Now <span id="submitTotal"></span>
             </button>
 
             <p style="font-size:12px;color:var(--slate);text-align:center;margin-top:14px;line-height:1.6;">
@@ -1106,10 +1106,10 @@
             <span class="price" id="totalAmount">$0</span>
           </div>
           <div class="summary-note">
-            <strong>Note:</strong> State filing fees are charged by the state and vary by state and entity type. We pass them through at cost — you'll see the exact total in your payment link before paying.
+            <strong>Note:</strong> The total above is your service fee, charged immediately via Stripe. State filing fees are charged by the state and vary by state and entity type — we pass them through at cost and bill that portion separately once confirmed.
           </div>
           <div class="trust-badges">
-            <div class="badge"><span class="badge-icon">🔒</span> Stripe-secured payment links</div>
+            <div class="badge"><span class="badge-icon">🔒</span> Instant Stripe-secured checkout</div>
             <div class="badge"><span class="badge-icon">📄</span> Documents delivered by email</div>
             <div class="badge"><span class="badge-icon">💬</span> Real human support</div>
             <div class="badge"><span class="badge-icon">↩️</span> Service-fee refund if rejected by state</div>
@@ -1168,7 +1168,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Do state filing fees cost extra? <span class="faq-chevron">▼</span></div>
-        <div class="faq-a">Yes. State filing fees range from around $50 to $500 depending on the state and entity type. Our service fee covers preparation, filing, and delivery. State fees are passed through at cost — you pay exactly what the state charges, with no markup. We send a payment link with the full breakdown before processing.</div>
+        <div class="faq-a">Yes. State filing fees range from around $50 to $500 depending on the state and entity type. Our service fee covers preparation, filing, and delivery, and is charged immediately at checkout. State fees are passed through at cost — you pay exactly what the state charges, with no markup — and we bill that portion separately by secure payment link once we've confirmed the exact amount for your state and entity type.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Can I form a business if I'm not a US citizen? <span class="faq-chevron">▼</span></div>
@@ -1232,14 +1232,32 @@
 <!-- SUCCESS MODAL -->
 <div class="modal-overlay" id="successModal">
   <div class="modal">
-    <div class="modal-icon">📨</div>
+    <div class="modal-icon">🔒</div>
     <h2>Order Received!</h2>
-    <p>Thanks — we got your order. We'll review your filing details and email you within one business day with confirmed state fees and a secure Stripe payment link. Watch your inbox (and spam folder).</p>
+    <p>Thanks — we got your order. You're being redirected to secure Stripe checkout to pay your service fee now. If the redirect doesn't happen automatically, click below. We'll email you separately to confirm your exact state filing fee.</p>
+    <a class="submit-btn" id="modalPayBtn" href="#" style="display:inline-block;text-decoration:none;margin-bottom:10px;">Proceed to Secure Payment</a>
     <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('show')">Close</button>
   </div>
 </div>
 
 <script>
+  // ── STRIPE PAYMENT CONFIG ──
+  // TODO (site owner): In your Stripe Dashboard, create ONE Payment Link containing
+  // all six of these as line items, each set to "Optional" with quantity 0–1:
+  //   LLC Formation ($49) · Corporation/Inc. ($79) · EIN/Tax ID ($49) ·
+  //   Annual Report ($99) · Expedited speed surcharge ($50) · Same-day speed surcharge ($100)
+  // Then paste that Payment Link URL below. Customers land on Stripe's hosted checkout
+  // and check the boxes matching what they picked on this form, then pay immediately.
+  // (State filing fees are NOT included here — they vary per state/entity and are
+  // confirmed and billed separately, per your order form copy.)
+  const STRIPE_PAYMENT_LINK_URL = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
+
+  function buildStripeCheckoutUrl(email) {
+    const url = new URL(STRIPE_PAYMENT_LINK_URL);
+    if (email) url.searchParams.set('prefilled_email', email);
+    return url.toString();
+  }
+
   // ── STATES DATA ──
   const states = [
     "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
@@ -1388,7 +1406,12 @@
       console.log('[FastCorpFiling] Submission response:', response.status, response.statusText);
 
       if (response.ok) {
-        // SUCCESS — show success modal, hide any error, reset form
+        // SUCCESS — order captured. Send the customer straight to Stripe checkout
+        // to pay their service fee now, instead of waiting on a follow-up email.
+        const email = form.querySelector('[name="email"]').value;
+        const checkoutUrl = buildStripeCheckoutUrl(email);
+
+        document.getElementById('modalPayBtn').href = checkoutUrl;
         document.getElementById('successModal').classList.add('show');
         document.getElementById('formError').style.display = 'none';
         form.reset();
@@ -1396,6 +1419,10 @@
         document.querySelectorAll('.service-option input[type="checkbox"]').forEach(cb => cb.checked = false);
         updateSummary();
         window.scrollTo({top: 0, behavior: 'smooth'});
+
+        // Auto-redirect to payment after a brief pause; the modal's button covers
+        // the case where a popup/redirect blocker stops this.
+        setTimeout(() => { window.location.href = checkoutUrl; }, 1200);
         return;
       }
 
