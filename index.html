@@ -763,6 +763,10 @@
   .divider { height: 1px; background: var(--border); max-width: 1120px; margin: 0 auto; }
   .text-gold { color: var(--gold); }
   .mt-8 { margin-top: 8px; }
+  .alert-info {
+    background: #fff8e6; border: 1px solid var(--gold); color: var(--navy);
+    padding: 12px 16px; border-radius: 8px; font-size: 14px; margin-bottom: 20px; line-height: 1.6;
+  }
   .alert-error {
     background: #fdf2f2;
     border: 1px solid #fbbebe;
@@ -912,7 +916,7 @@
       <div class="step">
         <div class="step-num">2</div>
         <h3>Complete the Order Form</h3>
-        <p>Provide your business name, owner information, and any special instructions. Takes under 5 minutes.</p>
+        <p>Provide your business name, owner information, and any special instructions, then pay securely through Stripe. Takes under 5 minutes.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
@@ -948,12 +952,13 @@
         <div class="section-header">
           <div class="section-tag">Order Now</div>
           <h2 class="section-title">Start Your Business Formation</h2>
-          <p class="section-sub">Tell us about your filing. We'll confirm state fees and send a secure payment link by email — your card is never entered on this site.</p>
+          <p class="section-sub">Tell us about your filing, then click Pay to complete your order on Stripe's secure checkout. Your card is never entered on this site.</p>
         </div>
         <div class="order-form-card">
           <div class="form-title">Order Form</div>
           <div class="form-sub">Fill out the form below to begin. Fields marked <span style="color:#e74c3c">*</span> are required.</div>
 
+          <div id="checkoutNotice" class="alert-info" style="display:none"></div>
           <div id="formError" class="alert-error">Please fill in all required fields before submitting.</div>
 
           <form id="orderForm" action="https://formspree.io/f/xbdqbvkw" method="POST" novalidate>
@@ -1073,21 +1078,23 @@
             <!-- PAYMENT INFO BOX (replaces credit card fields) -->
             <div class="form-section-label">4. Payment</div>
             <div class="payment-info-box">
-              <div class="payment-info-box-title">🔒 Secure payment by email</div>
-              <p>After we receive your order, we'll review your filing details, confirm the exact state fees for your state and entity type, and email you a secure payment link powered by <strong>Stripe</strong>. Your card details are never entered on this website. Payment is only collected after we've confirmed everything with you.</p>
+              <div class="payment-info-box-title">🔒 Secure checkout by Stripe</div>
+              <p>When you click Pay, you'll go to a secure checkout page run by <strong>Stripe</strong> to pay by card (Apple Pay and Google Pay where available). Your card details are entered on Stripe, never on this website. Your total includes our service fees and the standard state filing fee. If the state charges a different amount, we'll refund the difference or contact you before filing.</p>
             </div>
 
             <!-- Hidden fields for Formspree -->
             <input type="hidden" name="_subject" id="hiddenSubject" value="New FastCorpFiling Order">
             <input type="hidden" name="selected_services" id="hiddenServices" value="">
             <input type="hidden" name="estimated_total" id="hiddenTotal" value="">
+            <input type="hidden" name="order_ref" id="hiddenOrderRef" value="">
+            <input type="hidden" name="payment_method" value="Stripe Checkout (customer sent to pay online; check Stripe for payment)">
 
             <button type="submit" class="submit-btn" id="submitBtn">
-              Submit Order &amp; Get Payment Link <span id="submitTotal"></span>
+              Continue to Secure Payment <span id="submitTotal"></span>
             </button>
 
             <p style="font-size:12px;color:var(--slate);text-align:center;margin-top:14px;line-height:1.6;">
-              By submitting you agree to our <a href="terms.html" style="color:var(--gold)">Terms of Service</a> and <a href="privacy.html" style="color:var(--gold)">Privacy Policy</a>. State filing fees are passed through and billed at cost.
+              By continuing you agree to our <a href="terms.html" style="color:var(--gold)">Terms of Service</a> and <a href="privacy.html" style="color:var(--gold)">Privacy Policy</a>. State filing fees are passed through and billed at cost.
             </p>
 
           </form>
@@ -1102,14 +1109,14 @@
             <div class="summary-line" style="color:rgba(255,255,255,0.4);font-style:italic;font-size:13px;">No services selected yet.</div>
           </div>
           <div class="summary-line total" id="summaryTotal" style="display:none">
-            <span>Service Fees</span>
+            <span>Total Due Today</span>
             <span class="price" id="totalAmount">$0</span>
           </div>
           <div class="summary-note">
-            <strong>Note:</strong> State filing fees are charged by the state and vary by state and entity type. We pass them through at cost — you'll see the exact total in your payment link before paying.
+            <strong>Note:</strong> State filing fees are set by the state and passed through at cost. Pick your state to see them. Fees that depend on shares or revenue are confirmed and billed separately.
           </div>
           <div class="trust-badges">
-            <div class="badge"><span class="badge-icon">🔒</span> Stripe-secured payment links</div>
+            <div class="badge"><span class="badge-icon">🔒</span> Secure Stripe checkout</div>
             <div class="badge"><span class="badge-icon">📄</span> Documents delivered by email</div>
             <div class="badge"><span class="badge-icon">💬</span> Real human support</div>
             <div class="badge"><span class="badge-icon">↩️</span> Service-fee refund if rejected by state</div>
@@ -1168,7 +1175,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Do state filing fees cost extra? <span class="faq-chevron">▼</span></div>
-        <div class="faq-a">Yes. State filing fees range from around $50 to $500 depending on the state and entity type. Our service fee covers preparation, filing, and delivery. State fees are passed through at cost — you pay exactly what the state charges, with no markup. We send a payment link with the full breakdown before processing.</div>
+        <div class="faq-a">Yes. State filing fees range from around $50 to $500 depending on the state and entity type. Our service fee covers preparation, filing, and delivery. State fees are passed through at cost — you pay exactly what the state charges, with no markup. You'll see the full breakdown on the order form and at checkout before you pay.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Can I form a business if I'm not a US citizen? <span class="faq-chevron">▼</span></div>
@@ -1234,7 +1241,7 @@
   <div class="modal">
     <div class="modal-icon">📨</div>
     <h2>Order Received!</h2>
-    <p>Thanks — we got your order. We'll review your filing details and email you within one business day with confirmed state fees and a secure Stripe payment link. Watch your inbox (and spam folder).</p>
+    <p id="modalText">Thanks — we got your order, but we couldn't open the payment page right now. We'll email you a secure Stripe payment link within one business day. Watch your inbox (and spam folder).</p>
     <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('show')">Close</button>
   </div>
 </div>
@@ -1272,54 +1279,104 @@
     stateSelect.appendChild(opt);
   });
 
-  // ── SERVICE SELECTOR ──
-  const servicePrices = { llc: 49, corp: 79, ein: 49, annual: 99 };
-  const serviceLabels = { llc: 'LLC Formation', corp: 'Corporation (Inc.)', ein: 'EIN / Tax ID', annual: 'Annual Report' };
+  // ── CHECKOUT CONFIG ──
+  // URL of your Cloudflare Worker (see checkout-worker/SETUP.md). Leave empty to
+  // fall back to the old "we'll email you a payment link" flow.
+  const CHECKOUT_API = '';
+
+  // ── PRICING (loaded from pricing.json — edit that file to change prices) ──
+  let pricing = null;
+  fetch('pricing.json', { cache: 'no-cache' })
+    .then(r => r.ok ? r.json() : null)
+    .then(p => { pricing = p; updateSummary(); })
+    .catch(() => {});
+
+  const fallbackServices = {
+    llc: { label: 'LLC Formation', price: 49 }, corp: { label: 'Corporation (Inc.)', price: 79 },
+    ein: { label: 'EIN / Tax ID', price: 49 }, annual: { label: 'Annual Report', price: 99 }
+  };
+  const fallbackSpeed = {
+    standard: { label: 'Standard Processing', price: 0 },
+    expedited: { label: 'Expedited Processing', price: 50 },
+    same: { label: 'Same-Day Processing', price: 100 }
+  };
+
+  // Same rules as checkout-worker/pricing.js (the Worker re-checks every price).
+  function stateFeeKey(id, entityType) {
+    const et = (entityType || '').toLowerCase();
+    const nonprofit = et.includes('nonprofit');
+    const llc = et.includes('llc') || et.includes('limited liability');
+    if (id === 'llc') return 'llc';
+    if (id === 'corp') return nonprofit ? 'nonprofit' : 'corp';
+    if (id === 'annual') return nonprofit ? null : (llc ? 'annualLlc' : 'annualCorp');
+    return null;
+  }
+
+  function getSelection() {
+    const form = document.getElementById('orderForm');
+    return {
+      services: [...document.querySelectorAll('.service-option.checked')].map(o => o.dataset.id),
+      speed: form.querySelector('[name="speed"]').value,
+      entityType: form.querySelector('[name="entityType"]').value,
+      state: form.querySelector('[name="state"]').value
+    };
+  }
+
+  function computeOrder(sel) {
+    const services = (pricing && pricing.services) || fallbackServices;
+    const speeds = (pricing && pricing.speed) || fallbackSpeed;
+    const fees = pricing && sel.state ? pricing.stateFees[sel.state] : null;
+    const lines = [], pending = [];
+    sel.services.forEach(id => {
+      const svc = services[id];
+      lines.push({ label: svc.label, amount: svc.price });
+      if (id === 'ein') return;
+      const feeLabel = `${sel.state || 'State'} state fee – ${svc.label}`;
+      if (!sel.state || !fees) { pending.push({ label: 'State fee – ' + svc.label, why: sel.state ? 'loading…' : 'select state' }); return; }
+      const key = stateFeeKey(id, sel.entityType);
+      const fee = key ? fees[key] : null;
+      if (typeof fee === 'number') { if (fee > 0) lines.push({ label: feeLabel, amount: fee }); }
+      else pending.push({ label: feeLabel, why: 'billed separately' });
+    });
+    const sp = speeds[sel.speed];
+    if (sp && sp.price > 0) lines.push({ label: sp.label, amount: sp.price });
+    const total = lines.reduce((s, l) => s + l.amount, 0);
+    return { lines, pending, total };
+  }
+
+  const money = n => '$' + (Number.isInteger(n) ? n : n.toFixed(2));
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   function updateSummary() {
-    const selected = [];
-    document.querySelectorAll('.service-option').forEach(opt => {
-      if (opt.classList.contains('checked')) {
-        const id = opt.dataset.id;
-        selected.push({ id, label: serviceLabels[id], price: servicePrices[id] });
-      }
-    });
-
-    const speed = document.querySelector('[name="speed"]').value;
-    let speedAdd = 0, speedLabel = '';
-    if (speed === 'expedited') { speedAdd = 50; speedLabel = 'Expedited Processing'; }
-    if (speed === 'same') { speedAdd = 100; speedLabel = 'Same-Day Processing'; }
-
+    const sel = getSelection();
     const summaryDiv = document.getElementById('summaryLines');
     const totalDiv = document.getElementById('summaryTotal');
-    const submitTotal = document.getElementById('submitTotal');
+    const submitTotal = document.getElementById('submitTotal') || {};
 
-    if (selected.length === 0 && !speedAdd) {
+    if (sel.services.length === 0) {
       summaryDiv.innerHTML = '<div style="color:rgba(255,255,255,0.4);font-style:italic;font-size:13px;">No services selected yet.</div>';
       totalDiv.style.display = 'none';
       submitTotal.textContent = '';
-      return;
+      return null;
     }
 
-    let total = 0;
-    let html = '';
-    selected.forEach(s => {
-      total += s.price;
-      html += `<div class="summary-line"><span>${s.label}</span><span class="price">$${s.price}</span></div>`;
-    });
-    if (speedAdd) {
-      total += speedAdd;
-      html += `<div class="summary-line"><span>${speedLabel}</span><span class="price">+$${speedAdd}</span></div>`;
-    }
+    const order = computeOrder(sel);
+    let html = order.lines.map(l =>
+      `<div class="summary-line"><span>${esc(l.label)}</span><span class="price">${money(l.amount)}</span></div>`).join('');
+    html += order.pending.map(p =>
+      `<div class="summary-line" style="color:rgba(255,255,255,0.55);font-size:13px;"><span>${esc(p.label)}</span><span>${esc(p.why)}</span></div>`).join('');
     summaryDiv.innerHTML = html;
     totalDiv.style.display = 'flex';
-    document.getElementById('totalAmount').textContent = `$${total}`;
-    submitTotal.textContent = `(approx. $${total} + state fees)`;
+    document.getElementById('totalAmount').textContent = money(order.total);
+    const statesReady = sel.state && pricing;
+    submitTotal.textContent = statesReady ? `· Pay ${money(order.total)}` : '';
 
-    // Populate hidden fields for Formspree
-    const serviceLabelsList = selected.map(s => `${s.label} ($${s.price})`).join(', ');
-    document.getElementById('hiddenServices').value = serviceLabelsList + (speedAdd ? ` + ${speedLabel} ($${speedAdd})` : '');
-    document.getElementById('hiddenTotal').value = `$${total} service fees + state fees`;
+    // Hidden fields for Formspree (so your order email shows the same breakdown)
+    document.getElementById('hiddenServices').value =
+      order.lines.map(l => `${l.label} (${money(l.amount)})`).join(', ');
+    document.getElementById('hiddenTotal').value = `${money(order.total)} charged at checkout` +
+      (order.pending.length ? ` + to be billed separately: ${order.pending.map(p => p.label).join('; ')}` : '');
+    return order;
   }
 
   document.querySelectorAll('.service-option').forEach(opt => {
@@ -1331,27 +1388,57 @@
     });
   });
 
-  document.querySelector('[name="speed"]').addEventListener('change', updateSummary);
+  ['speed', 'state', 'entityType'].forEach(n =>
+    document.querySelector(`[name="${n}"]`).addEventListener('change', updateSummary));
+  stateSelect.addEventListener('change', updateSummary);
+  document.querySelectorAll('.state-chip').forEach(c => c.addEventListener('click', updateSummary));
 
-  // ── FORM SUBMIT (wired to Formspree) ──
-  document.getElementById('orderForm').addEventListener('submit', function(e) {
+  // Returning from Stripe without paying
+  if (new URLSearchParams(location.search).get('checkout') === 'canceled') {
+    const n = document.getElementById('checkoutNotice');
+    n.style.display = 'block';
+    n.textContent = 'Your payment was not completed, and you have not been charged. You can fill in the form and try again, or email support@fastcorpfiling.com and we\'ll send you a payment link.';
+  }
+
+  function newOrderRef() {
+    const d = new Date();
+    const ymd = d.getFullYear().toString().slice(2) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+    const rand = Array.from(crypto.getRandomValues(new Uint8Array(3)), b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+    return `FCF-${ymd}-${rand}`;
+  }
+
+  function showError(msg) {
+    const errEl = document.getElementById('formError');
+    errEl.style.display = 'block';
+    errEl.textContent = msg;
+    errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetForm(form) {
+    form.reset();
+    document.querySelectorAll('.service-option').forEach(o => o.classList.remove('checked'));
+    document.querySelectorAll('.service-option input[type="checkbox"]').forEach(cb => cb.checked = false);
+    updateSummary();
+  }
+
+  // ── FORM SUBMIT: save order (Formspree) → open Stripe Checkout ──
+  document.getElementById('orderForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = this;
     const submitBtn = document.getElementById('submitBtn');
 
     // Validate required fields
-    const required = form.querySelectorAll('[required]');
     let valid = true;
-    required.forEach(f => {
+    form.querySelectorAll('[required]').forEach(f => {
       if (!f.value.trim()) { f.style.borderColor = '#e74c3c'; valid = false; }
       else f.style.borderColor = '';
     });
-
-    // Also require at least one service selected
-    const anyService = document.querySelectorAll('.service-option.checked').length > 0;
-    if (!anyService) {
-      valid = false;
+    const emailField = form.querySelector('[name="email"]');
+    if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+      emailField.style.borderColor = '#e74c3c'; valid = false;
     }
+    const anyService = document.querySelectorAll('.service-option.checked').length > 0;
+    if (!anyService) valid = false;
 
     if (!valid) {
       document.getElementById('formError').style.display = 'block';
@@ -1363,76 +1450,70 @@
     }
     document.getElementById('formError').style.display = 'none';
 
-    // Disable button to prevent double-submits
+    updateSummary(); // refresh hidden fields before the button text changes
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.6';
     submitBtn.style.cursor = 'wait';
     const originalBtnText = submitBtn.innerHTML;
-    submitBtn.innerHTML = 'Submitting...';
-
-    // Build email subject from key fields for easier inbox scanning
-    const bizName = form.querySelector('[name="bizName"]').value;
-    const state = form.querySelector('[name="state"]').value;
-    document.getElementById('hiddenSubject').value =
-      `New Order: ${bizName} (${state}) — FastCorpFiling`;
-
-    // POST to Formspree
-    const data = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' },
-      mode: 'cors'
-    })
-    .then(response => {
-      console.log('[FastCorpFiling] Submission response:', response.status, response.statusText);
-
-      if (response.ok) {
-        // SUCCESS — show success modal, hide any error, reset form
-        document.getElementById('successModal').classList.add('show');
-        document.getElementById('formError').style.display = 'none';
-        form.reset();
-        document.querySelectorAll('.service-option').forEach(o => o.classList.remove('checked'));
-        document.querySelectorAll('.service-option input[type="checkbox"]').forEach(cb => cb.checked = false);
-        updateSummary();
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        return;
-      }
-
-      // Non-OK response — try to extract error details from the JSON body
-      return response.json().then(data => {
-        const errEl = document.getElementById('formError');
-        errEl.style.display = 'block';
-        errEl.textContent = (data && data.errors && data.errors.length)
-          ? 'Submission error: ' + data.errors.map(e => e.message).join(', ')
-          : 'Sorry, there was an error submitting your order (status ' + response.status + '). Please email support@fastcorpfiling.com.';
-        errEl.scrollIntoView({behavior: 'smooth', block: 'center'});
-      }).catch(() => {
-        // Couldn't parse JSON body — show generic error with status code
-        const errEl = document.getElementById('formError');
-        errEl.style.display = 'block';
-        errEl.textContent = 'Sorry, there was an error submitting your order (status ' + response.status + '). Please email support@fastcorpfiling.com.';
-        errEl.scrollIntoView({behavior: 'smooth', block: 'center'});
-      });
-    })
-    .catch(error => {
-      console.error('[FastCorpFiling] Submission failed:', error);
-      // If the success modal is already showing, the order DID go through —
-      // don't display a scary error for a harmless post-success hiccup.
-      if (document.getElementById('successModal').classList.contains('show')) {
-        return;
-      }
-      const errEl = document.getElementById('formError');
-      errEl.style.display = 'block';
-      errEl.textContent = 'Network error — please check your connection and try again, or email support@fastcorpfiling.com.';
-      errEl.scrollIntoView({behavior: 'smooth', block: 'center'});
-    })
-    .finally(() => {
+    submitBtn.innerHTML = 'Saving your order…';
+    const restoreBtn = () => {
       submitBtn.disabled = false;
       submitBtn.style.opacity = '';
       submitBtn.style.cursor = '';
       submitBtn.innerHTML = originalBtnText;
-    });
+    };
+
+    const orderRef = newOrderRef();
+    document.getElementById('hiddenOrderRef').value = orderRef;
+    const get = n => form.querySelector(`[name="${n}"]`).value.trim();
+    document.getElementById('hiddenSubject').value =
+      `New Order ${orderRef}: ${get('bizName')} (${get('state')}) — FastCorpFiling`;
+
+    // 1) Save the order details to Formspree so you get the full order by email.
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
+      });
+      if (!response.ok) {
+        let data = null; try { data = await response.json(); } catch (_) {}
+        restoreBtn();
+        return showError((data && data.errors && data.errors.length)
+          ? 'Submission error: ' + data.errors.map(e => e.message).join(', ')
+          : 'Sorry, there was an error submitting your order (status ' + response.status + '). Please email support@fastcorpfiling.com.');
+      }
+    } catch (err) {
+      console.error('[FastCorpFiling] Submission failed:', err);
+      restoreBtn();
+      return showError('Network error — please check your connection and try again, or email support@fastcorpfiling.com.');
+    }
+
+    // 2) Create a Stripe Checkout session and send the customer to pay.
+    const fallback = () => {
+      restoreBtn();
+      resetForm(form);
+      document.getElementById('successModal').classList.add('show');
+    };
+    if (!CHECKOUT_API) return fallback();
+
+    submitBtn.innerHTML = 'Opening secure checkout…';
+    try {
+      const sel = getSelection();
+      const res = await fetch(CHECKOUT_API.replace(/\/$/, '') + '/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...sel, orderRef,
+          email: get('email'), bizName: get('bizName'),
+          firstName: get('firstName'), lastName: get('lastName'), phone: get('phone')
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.url) { window.location.href = data.url; return; }
+      console.error('[FastCorpFiling] Checkout error:', res.status, data.error);
+    } catch (err) {
+      console.error('[FastCorpFiling] Checkout failed:', err);
+    }
+    fallback(); // order is saved; we'll email a payment link instead
   });
 
   // ── FAQ ACCORDION ──
