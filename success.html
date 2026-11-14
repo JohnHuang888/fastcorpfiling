@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Received – FastCorpFiling</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal.css">
+</head>
+<body>
+
+<div class="topbar">
+  🇺🇸 Serving all 50 states &nbsp;|&nbsp; <span>Same-day prep available</span> &nbsp;|&nbsp; Questions? Email us: <span>support@fastcorpfiling.com</span>
+</div>
+
+<nav>
+  <a href="index.html" class="logo">
+    FastCorpFiling
+    <span class="logo-badge">Official</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+    <li><a href="index.html#states">All 50 States</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#order" class="nav-cta">Start Filing →</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <h1 id="title">Thank You — Payment Received</h1>
+  <p id="subtitle">Your order is confirmed and we're getting started.</p>
+</header>
+
+<main class="legal-content">
+
+<div class="contact-block" id="details" style="display:none"></div>
+
+<h2>What happens next</h2>
+<ul>
+  <li>Stripe has emailed you a receipt for your payment.</li>
+  <li>We'll review your order and begin preparing your filing within one business day.</li>
+  <li>If anything needs your attention (for example, a state fee that varies, or a name that isn't available), we'll email you before filing.</li>
+  <li>Your stamped documents will be delivered to your inbox as soon as the state returns them.</li>
+</ul>
+
+<p>Questions? Email <a href="mailto:support@fastcorpfiling.com">support@fastcorpfiling.com</a> or call 718-888-9396. Please include your order number.</p>
+
+<p><a href="index.html">← Back to FastCorpFiling</a></p>
+
+</main>
+
+<script>
+  // Same Worker URL as in index.html (leave empty to skip the payment lookup).
+  const CHECKOUT_API = '';
+  const id = new URLSearchParams(location.search).get('session_id');
+  if (CHECKOUT_API && id) {
+    fetch(CHECKOUT_API.replace(/\/$/, '') + '/session?id=' + encodeURIComponent(id))
+      .then(r => r.ok ? r.json() : null)
+      .then(s => {
+        if (!s) return;
+        const box = document.getElementById('details');
+        if (!s.paid) {
+          document.getElementById('title').textContent = 'Payment Processing';
+          document.getElementById('subtitle').textContent = "We'll email you as soon as your payment is confirmed.";
+        }
+        const amt = typeof s.amountTotal === 'number' ? '$' + (s.amountTotal / 100).toFixed(2) : '';
+        box.textContent = '';
+        if (s.orderRef) { const b = document.createElement('div'); b.innerHTML = '<strong>Order number:</strong> '; b.append(s.orderRef); box.append(b); }
+        if (amt) { const b = document.createElement('div'); b.innerHTML = '<strong>Amount paid:</strong> '; b.append(amt); box.append(b); }
+        if (box.childNodes.length) box.style.display = 'block';
+      })
+      .catch(() => {});
+  }
+</script>
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo">FastCorpFiling</a>
+        <p class="footer-desc">Professional business formation services in all 50 states. Fast, reliable, and affordable.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="index.html#order">LLC Formation</a></li>
+          <li><a href="index.html#order">Corporation Filing</a></li>
+          <li><a href="index.html#order">EIN / Tax ID</a></li>
+          <li><a href="index.html#order">Annual Report</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#testimonials">Our Promise</a></li>
+          <li><a href="index.html#how">How It Works</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="mailto:support@fastcorpfiling.com">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FastCorpFiling.com · All rights reserved.</span>
+      <span>FastCorpFiling is a document preparation service and is not a law firm. We do not provide legal, tax, or financial advice.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

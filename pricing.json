@@ -1,0 +1,388 @@
+{
+ "_readme": "Edit this file to change prices. All amounts in US dollars. null = fee varies (shares, revenue, members) and is NOT charged at checkout; you confirm it and bill it separately. State fees were compiled from public 2026 fee tables (online-filing price where states differ) on 2026-11-14 -- verify against each Secretary of State before relying on them. Publication costs (NY, AZ, NE) and state expedite fees are not included.",
+ "updated": "2026-11-14",
+ "services": {
+  "llc": {
+   "label": "LLC Formation",
+   "price": 49
+  },
+  "corp": {
+   "label": "Corporation (Inc.)",
+   "price": 79
+  },
+  "ein": {
+   "label": "EIN / Tax ID",
+   "price": 49
+  },
+  "annual": {
+   "label": "Annual Report",
+   "price": 99
+  }
+ },
+ "speed": {
+  "standard": {
+   "label": "Standard Processing",
+   "price": 0
+  },
+  "expedited": {
+   "label": "Expedited Processing",
+   "price": 50
+  },
+  "same": {
+   "label": "Same-Day Processing",
+   "price": 100
+  }
+ },
+ "stateFees": {
+  "Alabama": {
+   "llc": 225,
+   "corp": 225,
+   "nonprofit": 100,
+   "annualLlc": null,
+   "annualCorp": null
+  },
+  "Alaska": {
+   "llc": 250,
+   "corp": 250,
+   "nonprofit": 50,
+   "annualLlc": 100,
+   "annualCorp": 100
+  },
+  "Arizona": {
+   "llc": 50,
+   "corp": 60,
+   "nonprofit": 40,
+   "annualLlc": 0,
+   "annualCorp": 45
+  },
+  "Arkansas": {
+   "llc": 45,
+   "corp": 50,
+   "nonprofit": 50,
+   "annualLlc": 150,
+   "annualCorp": 150
+  },
+  "California": {
+   "llc": 70,
+   "corp": 100,
+   "nonprofit": 30,
+   "annualLlc": 20,
+   "annualCorp": 25
+  },
+  "Colorado": {
+   "llc": 50,
+   "corp": 50,
+   "nonprofit": 50,
+   "annualLlc": 25,
+   "annualCorp": 25
+  },
+  "Connecticut": {
+   "llc": 120,
+   "corp": 250,
+   "nonprofit": 50,
+   "annualLlc": 80,
+   "annualCorp": 150
+  },
+  "Delaware": {
+   "llc": 110,
+   "corp": 109,
+   "nonprofit": 109,
+   "annualLlc": 300,
+   "annualCorp": null
+  },
+  "Florida": {
+   "llc": 125,
+   "corp": 70,
+   "nonprofit": 70,
+   "annualLlc": 138.75,
+   "annualCorp": 150
+  },
+  "Georgia": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": 100,
+   "annualLlc": 60,
+   "annualCorp": 60
+  },
+  "Hawaii": {
+   "llc": 51,
+   "corp": 50,
+   "nonprofit": 25,
+   "annualLlc": 12.5,
+   "annualCorp": 15
+  },
+  "Idaho": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": 30,
+   "annualLlc": 0,
+   "annualCorp": 0
+  },
+  "Illinois": {
+   "llc": 150,
+   "corp": null,
+   "nonprofit": 50,
+   "annualLlc": 75,
+   "annualCorp": null
+  },
+  "Indiana": {
+   "llc": 95,
+   "corp": 95,
+   "nonprofit": 20,
+   "annualLlc": 32,
+   "annualCorp": 32
+  },
+  "Iowa": {
+   "llc": 50,
+   "corp": 50,
+   "nonprofit": 20,
+   "annualLlc": 30,
+   "annualCorp": 60
+  },
+  "Kansas": {
+   "llc": 85,
+   "corp": 85,
+   "nonprofit": 20,
+   "annualLlc": 90,
+   "annualCorp": null
+  },
+  "Kentucky": {
+   "llc": 40,
+   "corp": 50,
+   "nonprofit": 8,
+   "annualLlc": 15,
+   "annualCorp": 15
+  },
+  "Louisiana": {
+   "llc": 125,
+   "corp": 75,
+   "nonprofit": 60,
+   "annualLlc": 35,
+   "annualCorp": 30
+  },
+  "Maine": {
+   "llc": 175,
+   "corp": 145,
+   "nonprofit": 40,
+   "annualLlc": 85,
+   "annualCorp": 85
+  },
+  "Maryland": {
+   "llc": 100,
+   "corp": 120,
+   "nonprofit": 170,
+   "annualLlc": 300,
+   "annualCorp": 300
+  },
+  "Massachusetts": {
+   "llc": 500,
+   "corp": 275,
+   "nonprofit": 35,
+   "annualLlc": 500,
+   "annualCorp": 125
+  },
+  "Michigan": {
+   "llc": 50,
+   "corp": 60,
+   "nonprofit": 20,
+   "annualLlc": 25,
+   "annualCorp": 25
+  },
+  "Minnesota": {
+   "llc": 155,
+   "corp": 155,
+   "nonprofit": 90,
+   "annualLlc": 0,
+   "annualCorp": 0
+  },
+  "Mississippi": {
+   "llc": 50,
+   "corp": 50,
+   "nonprofit": 50,
+   "annualLlc": 0,
+   "annualCorp": 25
+  },
+  "Missouri": {
+   "llc": 50,
+   "corp": 58,
+   "nonprofit": 25,
+   "annualLlc": 0,
+   "annualCorp": 20
+  },
+  "Montana": {
+   "llc": 35,
+   "corp": 35,
+   "nonprofit": 20,
+   "annualLlc": 20,
+   "annualCorp": 20
+  },
+  "Nebraska": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": null,
+   "annualLlc": 25,
+   "annualCorp": null
+  },
+  "Nevada": {
+   "llc": 425,
+   "corp": 725,
+   "nonprofit": 50,
+   "annualLlc": 350,
+   "annualCorp": 650
+  },
+  "New Hampshire": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": 25,
+   "annualLlc": 100,
+   "annualCorp": 100
+  },
+  "New Jersey": {
+   "llc": 125,
+   "corp": 125,
+   "nonprofit": 75,
+   "annualLlc": 75,
+   "annualCorp": 75
+  },
+  "New Mexico": {
+   "llc": 50,
+   "corp": 100,
+   "nonprofit": 25,
+   "annualLlc": 0,
+   "annualCorp": 25
+  },
+  "New York": {
+   "llc": 200,
+   "corp": 125,
+   "nonprofit": 75,
+   "annualLlc": 9,
+   "annualCorp": 9
+  },
+  "North Carolina": {
+   "llc": 125,
+   "corp": 125,
+   "nonprofit": 60,
+   "annualLlc": 200,
+   "annualCorp": 25
+  },
+  "North Dakota": {
+   "llc": 135,
+   "corp": 100,
+   "nonprofit": 40,
+   "annualLlc": 50,
+   "annualCorp": 25
+  },
+  "Ohio": {
+   "llc": 99,
+   "corp": 99,
+   "nonprofit": 99,
+   "annualLlc": 0,
+   "annualCorp": 0
+  },
+  "Oklahoma": {
+   "llc": 100,
+   "corp": 50,
+   "nonprofit": 25,
+   "annualLlc": 25,
+   "annualCorp": null
+  },
+  "Oregon": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": 50,
+   "annualLlc": 100,
+   "annualCorp": 100
+  },
+  "Pennsylvania": {
+   "llc": 125,
+   "corp": 125,
+   "nonprofit": 125,
+   "annualLlc": 7,
+   "annualCorp": 7
+  },
+  "Rhode Island": {
+   "llc": 150,
+   "corp": 230,
+   "nonprofit": 35,
+   "annualLlc": 50,
+   "annualCorp": 50
+  },
+  "South Carolina": {
+   "llc": 110,
+   "corp": 135,
+   "nonprofit": 25,
+   "annualLlc": 0,
+   "annualCorp": null
+  },
+  "South Dakota": {
+   "llc": 150,
+   "corp": 150,
+   "nonprofit": 30,
+   "annualLlc": 55,
+   "annualCorp": 55
+  },
+  "Tennessee": {
+   "llc": 300,
+   "corp": 100,
+   "nonprofit": 100,
+   "annualLlc": null,
+   "annualCorp": 20
+  },
+  "Texas": {
+   "llc": 300,
+   "corp": 300,
+   "nonprofit": 25,
+   "annualLlc": 0,
+   "annualCorp": 0
+  },
+  "Utah": {
+   "llc": 59,
+   "corp": 59,
+   "nonprofit": 59,
+   "annualLlc": 18,
+   "annualCorp": 18
+  },
+  "Vermont": {
+   "llc": 155,
+   "corp": 125,
+   "nonprofit": 155,
+   "annualLlc": 45,
+   "annualCorp": 60
+  },
+  "Virginia": {
+   "llc": 100,
+   "corp": 75,
+   "nonprofit": 75,
+   "annualLlc": 50,
+   "annualCorp": 100
+  },
+  "Washington": {
+   "llc": 200,
+   "corp": 200,
+   "nonprofit": 40,
+   "annualLlc": 70,
+   "annualCorp": 70
+  },
+  "West Virginia": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": 25,
+   "annualLlc": 25,
+   "annualCorp": 25
+  },
+  "Wisconsin": {
+   "llc": 130,
+   "corp": 100,
+   "nonprofit": 35,
+   "annualLlc": 25,
+   "annualCorp": 40
+  },
+  "Wyoming": {
+   "llc": 100,
+   "corp": 100,
+   "nonprofit": 50,
+   "annualLlc": 60,
+   "annualCorp": 60
+  }
+ }
+}
